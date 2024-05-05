@@ -1,6 +1,6 @@
-# FastApi example Project
+# Tribe 1 Backend
 
-A brief description of your project.
+Backend project leveraging FastAPI and OpenAI api to dynamically generate motivational letters.
 
 ## Table of Contents
 
