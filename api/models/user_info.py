@@ -3,5 +3,7 @@ from pydantic import BaseModel, Field, EmailStr
 
 class UserInfo(BaseModel):
     name: str = Field(..., example="John Doe")
-    age: int = Field(..., gt=0, lt=130)
-    email: EmailStr = Field(..., example="johndoe@example.com")
+    vacant: str = Field(..., example="Backend Developer")
+    enterprise: str = Field(..., example="Matchworking")
+    experience: str = Field(...,
+                            example="2 años Desarrollando API's con FastAPI")
