@@ -4,3 +4,4 @@ pydantic[email]
 pydantic[GetJsonSchemaHandle]
 passlib[bcrypt]
 openai
+python-docx
