@@ -6,3 +6,5 @@ passlib[bcrypt]
 openai
 pytest
 httpx
+pymongo
+motor
