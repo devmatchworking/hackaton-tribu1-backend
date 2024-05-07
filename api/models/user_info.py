@@ -4,7 +4,6 @@ from pydantic import BaseModel, Field, EmailStr
 # the atributes are used to generated a motivational letter
 class UserInfo(BaseModel):
     name: str = Field(..., example="John Doe")
-    age: int = Field(..., gt=0, lt=130,example=19)
     email: EmailStr = Field(..., example="johndoe@example.com")
     vacancy: str = Field(..., example="Software Engineer")
     company: str = Field(..., example="ABC Company")
@@ -12,3 +11,7 @@ class UserInfo(BaseModel):
     experience: str = Field(..., example="3 years in backend development at XYZ Company")
     
 
+#return a string with the prompt to be used in the openai api
+    def get_as_prompt(self):
+        return f"Nombre: {self.name}, Email: {self.email}, Vacante: {self.vacancy}, Empresa: {self.company}, Info Empresa: {self.companyInfo}, Experiencia: {self.experience}"
+        
