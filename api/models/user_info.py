@@ -11,3 +11,8 @@ class UserInfo(BaseModel):
     companyInfo: str = Field(...,  min_length=25,max_length=200, example="ABC Company is a leading tech company in the industry")
     experience: str = Field(..., min_length=25,max_length=200, example="3 years in backend development at XYZ Company")
     
+
+#return a string with the prompt to be used in the openai api
+def get_as_prompt(self):
+    return f"Nombre: {self.name}, Email: {self.email}, Vacante: {self.vacancy}, Empresa: {self.company}, Info Empresa: {self.companyInfo}, Experiencia: {self.experience}"
+    
