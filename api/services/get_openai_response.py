@@ -8,7 +8,7 @@ def get_openai_response(prompt = ""):
     
     try: 
         completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model=os.getenv("GPT_MODEL"),
         messages=[
                 {
                     "role": "system", 
