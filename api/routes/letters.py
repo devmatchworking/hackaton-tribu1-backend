@@ -16,7 +16,7 @@ letter_created = ""
 
 
 @router.post("/letter", response_model=Letter, status_code=201)
-async def create_letter(user_info: UserInfo):
+async def create_letter(user_info: UserInfo) -> Letter:
     name = user_info.name
     vacant = user_info.vacant
     enterprise = user_info.enterprise
@@ -33,7 +33,7 @@ async def create_letter(user_info: UserInfo):
     letter = response.choices[0].message.content
     global letter_created
     letter_created = letter
-    return letter_created
+    return Letter(content=letter_created)
 
 
 @router.get('/save-letter')
