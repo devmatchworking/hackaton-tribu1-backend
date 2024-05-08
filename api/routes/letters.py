@@ -22,11 +22,13 @@ async def save_letter(letter: Letter):
     await create_letter_db(letter)
     return letter
 
-@router.get('/letter-db/{id}', response_model=Letter_DB)
+@router.get('/letter-db/{id}')
 async def get_letter(id: str):
-    find_letter = find_letter_id(id)
+    find_letter = await find_letter_id(id)
     if (find_letter):
-        letter = Letter(content=find_letter.content)
-        return letter
+        return {
+            "id": str(find_letter["_id"]),  
+            "letter": find_letter["content"]  
+        }
     else:
         return {"message": "Carta no encontrada"}
