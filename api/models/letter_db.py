@@ -1,21 +1,25 @@
-from pydantic import BaseModel, Field, EmailStr,BaseConfig
-from models.letter import Letter
 from bson import ObjectId
 from models.letter import Letter
+from pydantic import BaseModel, Field, field_validator, ValidationError
 
 
-class Letter_DB(Letter):
-    id: ObjectId = Field(..., example="6122a42e67a51d001555de9a")
+class Letter_DB(BaseModel):
+    id: str = Field(..., example="6122a42e67a51d001555de9a")
     letter: Letter
-    #date: 
-    #user:
 
-    class Config:
-        arbitrary_types_allowed = True
+    @field_validator('id')
+    def validate_object_id(cls, v):
+        try:
+            ObjectId(v)
+        except Exception:
+            raise ValueError('Invalid ObjectId')
+        return v
+
+    letter: Letter
     
     @classmethod
     def from_mongo(cls, data):
-        return cls(**data)
+        return cls(id=str(data["_id"]), letter=Letter(content=data["content"]))
 
     def to_mongo(self):
         return self.model_dump()
