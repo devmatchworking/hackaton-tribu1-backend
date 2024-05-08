@@ -7,5 +7,6 @@ openai
 pytest
 httpx
 pymongo
+pymongo[srv]
 motor
 python-docx

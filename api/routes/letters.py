@@ -11,7 +11,7 @@ from docx import Document
 router = APIRouter(
     tags=["Letter Routes"]
 )
-client = OpenAI()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 letter_created = ""
 
