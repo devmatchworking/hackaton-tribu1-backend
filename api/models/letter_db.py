@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field, EmailStr,BaseConfig
 from models.letter import Letter
 from bson import ObjectId
-from letter import Letter
+from models.letter import Letter
 
 
 class Letter_DB(Letter):
