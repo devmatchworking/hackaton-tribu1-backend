@@ -8,3 +8,4 @@ pytest
 httpx
 pymongo
 motor
+python-docx
