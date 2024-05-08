@@ -2,6 +2,7 @@ import os
 from fastapi import APIRouter
 from models.letter import Letter
 from models.user_info import UserInfo
+from models.enterprise_info import EnterpriseInfo
 from openai import OpenAI
 from docx import Document
 from fastapi.responses import FileResponse
@@ -16,11 +17,12 @@ letter_created = ""
 
 
 @router.post("/letter", response_model=Letter, status_code=201)
-async def create_letter(user_info: UserInfo) -> Letter:
+async def create_letter(user_info: UserInfo, enterprise_info: EnterpriseInfo) -> Letter:
     name = user_info.name
-    vacant = user_info.vacant
-    enterprise = user_info.enterprise
+    vacant = enterprise_info.vacant
+    enterprise = enterprise_info.name
     experience = user_info.experience
+
     promt = f"Crea una carta de intencion para la empresa {enterprise} que tiene disponible una vacante de {
         vacant}, ten en cuenta que tengo experiencia en {experience} y mi nombre es {name}, la carta debe tener minimo 350 caracteres"
     response = client.chat.completions.create(
