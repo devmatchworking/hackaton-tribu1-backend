@@ -1,4 +1,4 @@
-from db.db import get_db
+from ...db.db import get_db
 from bson import ObjectId
 
 async def find_letter_id(id: str):

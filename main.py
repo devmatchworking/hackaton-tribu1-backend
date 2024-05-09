@@ -4,10 +4,10 @@ import uvicorn
 import os
 from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
-from utils.check_db_conn import check_mongo_connection
+from api.utils.check_db_conn import check_mongo_connection
 from fastapi.middleware.cors import CORSMiddleware
 
-from db.db import connect_and_init_db
+from api.db.db import connect_and_init_db
 load_dotenv()
 
 

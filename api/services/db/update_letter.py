@@ -1,6 +1,6 @@
-from db.db import get_db
+from ...db.db import get_db
 from bson import ObjectId
-from models.letter import Letter
+from ...models.letter import Letter
 
 async def update_letter_id(id: str, letter: Letter):
     try:

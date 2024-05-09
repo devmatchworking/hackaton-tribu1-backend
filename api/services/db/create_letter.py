@@ -1,6 +1,4 @@
-
-
-from db.db import get_db
+from ...db.db import get_db
 async def create_letter_db(letter):
     try:
         db = await get_db()

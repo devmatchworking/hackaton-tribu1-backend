@@ -1,5 +1,5 @@
 from bson import ObjectId
-from models.letter import Letter
+from .letter import Letter
 from pydantic import BaseModel, Field, field_validator, ValidationError
 
 

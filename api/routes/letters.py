@@ -2,18 +2,20 @@ import os
 import pymongo
 from typing import Union
 from fastapi import APIRouter
-from services.db.get_letter_by_id import find_letter_id
-from services.db.create_letter import create_letter_db
-from services.db.update_letter import update_letter_id
-from services.db.delete_letter import delete_letter_id
-from models.letter import Letter
-from models.letter_db import Letter_DB
-from models.user_info import UserInfo
-from models.enterprise_info import EnterpriseInfo
 from openai import OpenAI
 from fastapi.responses import FileResponse
 from docx import Document
-from models.request_data import UpdateLetterRequest
+
+from ..models.request_data import UpdateLetterRequest
+from ..services.db.get_letter_by_id import find_letter_id
+from ..services.db.create_letter import create_letter_db
+from ..services.db.update_letter import update_letter_id
+from ..services.db.delete_letter import delete_letter_id
+from ..models.letter import Letter
+from ..models.letter_db import Letter_DB
+from ..models.user_info import UserInfo
+from ..models.enterprise_info import EnterpriseInfo
+
 
 
 router = APIRouter(
