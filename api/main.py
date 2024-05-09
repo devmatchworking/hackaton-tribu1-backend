@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from routes import letters
+from api.routes import letters
 import uvicorn
 import os
 from dotenv import load_dotenv
@@ -13,6 +13,10 @@ load_dotenv()
 
 app = FastAPI()
 app.include_router(letters.router)
+
+@app.get("/healthcheck")
+async def healthcheck():
+    return {"status": "ok"}
 
 origins = [
     "*",
