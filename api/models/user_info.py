@@ -8,11 +8,11 @@ class UserInfo(BaseModel):
     name: str = Field(..., min_length=1, max_length=25, example="John")
     last_name: str = Field(..., example="Doe")
     email: EmailStr = Field(..., example="johndoe@example.com")
-    contact: str = Field(..., min_length=10,
-                         max_length=10, example="0910101010")
-    experience: str = Field(..., min_length=1, max_length=200,
+    contact: str = Field(..., min_length=9,
+                         max_length=15, example="0910101010")
+    experience: str = Field(..., min_length=1, max_length=100000,
                             example="3 years in backend development at XYZ Company")
-    date_of_soliciation: str = Field(..., example="2022-09-09")
+    date_of_solicitation: str = Field(..., example="2022-09-09")
 
     # return a string with the prompt to be used in the openai api
 

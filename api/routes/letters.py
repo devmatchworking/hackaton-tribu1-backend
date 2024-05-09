@@ -25,13 +25,16 @@ letter_created = ""
 
 @router.post('/letter')
 async def create_letter(user_info: UserInfo, enterprise_info: EnterpriseInfo) -> Letter:
+
+    language = "espanish"
    
-    prompt = f"""Write a motivational letter in spanish addressed to {enterprise_info.recipient}, {enterprise_info.position} at {enterprise_info.name} regarding the {enterprise_info.vacant} position.
-    Relate the experience of {user_info.name} {user_info.last_name} with the {enterprise_info.vacant} position at {enterprise_info.name}.
+    prompt = f"""Write a motivational letter in the language [{language}] addressed to the recipient[{enterprise_info.recipient}], [{enterprise_info.position}] at [{enterprise_info.name}] regarding the [{enterprise_info.vacant}] position.
+    Relate next experience [{user_info.experience}]
+    of [{user_info.name} {user_info.last_name}] with the vacant position[{enterprise_info.vacant}] position at the enterprise[{enterprise_info.name}].
     If any information is missing, please Do not complete it with generic information.
-    the date of the solicitation is {user_info.date_of_soliciation}.
+    the date of the solicitation is [{user_info.date_of_solicitation}].
     Remember to include the following information for contact in the signature:
-    {user_info.name} {user_info.last_name}{user_info.email}{user_info.contact}
+    [{user_info.name} {user_info.last_name}{user_info.email}{user_info.contact}]
     """
     
     try:
