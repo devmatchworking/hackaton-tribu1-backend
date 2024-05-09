@@ -26,25 +26,14 @@ letter_created = ""
 @router.post('/letter')
 async def create_letter(user_info: UserInfo, enterprise_info: EnterpriseInfo) -> Letter:
    
-    prompt = f"""Write a motivational letter addressed to {enterprise_info.recipient}, {enterprise_info.position} at {enterprise_info.name} regarding the {enterprise_info.vacant} position.
-
-    Remember to include the following information for contact:
+    prompt = f"""Write a motivational letter in spanish addressed to {enterprise_info.recipient}, {enterprise_info.position} at {enterprise_info.name} regarding the {enterprise_info.vacant} position.
+    Relate the experience of {user_info.name} {user_info.last_name} with the {enterprise_info.vacant} position at {enterprise_info.name}.
+    If any information is missing, please Do not complete it with generic information.
+    the date of the solicitation is {user_info.date_of_soliciation}.
+    Remember to include the following information for contact in the signature:
     {user_info.name} {user_info.last_name}{user_info.email}{user_info.contact}
     """
-    '''
-    if not enterprise_info.information and enterprise_info.recipient and enterprise_info.position:
-        promt = f"Crea una carta de intencion para la empresa {enterprise} que tiene disponible una vacante de {
-            vacant}, ten en cuenta que tengo experiencia en {experience} y mi nombre es {name}, la carta debe tener minimo 350 caracteres"
-    if not enterprise_info.information and enterprise_info.position:
-        promt = f"Crea una carta de intencion para la empresa {enterprise} que tiene disponible una vacante de {
-            vacant}, ten en cuenta que tengo experiencia en {experience} y mi nombre es {name}, la carta debe tener minimo 350 caracteres y va dirigida a {enterprise_info.recipient}"
-    if not enterprise_info.information and enterprise_info.recipient:
-        promt = f"Crea una carta de intencion para la empresa {enterprise} que tiene disponible una vacante de {
-            vacant}, ten en cuenta que tengo experiencia en {experience} y mi nombre es {name}, la carta debe tener minimo 350 caracteres y va dirigida a una persona con el cargo de {enterprise_info.position}"
-    if not enterprise_info.recipient and enterprise_info.position:
-        promt = f"Crea una carta de intencion para la empresa {enterprise} cuya información es {enterprise_info.information} que tiene disponible una vacante de {
-            vacant}, ten en cuenta que tengo experiencia en {experience} y mi nombre es {name}, la carta debe tener minimo 350 caracteres"
-    '''
+    
     try:
         response = client.chat.completions.create(
             model="gpt-4-turbo",

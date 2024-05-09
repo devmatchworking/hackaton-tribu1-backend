@@ -12,6 +12,7 @@ class UserInfo(BaseModel):
                          max_length=10, example="0910101010")
     experience: str = Field(..., min_length=1, max_length=200,
                             example="3 years in backend development at XYZ Company")
+    date_of_soliciation: str = Field(..., example="2022-09-09")
 
     # return a string with the prompt to be used in the openai api
 
