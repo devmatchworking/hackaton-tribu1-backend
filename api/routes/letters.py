@@ -1,7 +1,7 @@
 import os
 import pymongo
 from typing import Union
-from fastapi import APIRouter
+from fastapi import APIRouter,HTTPException
 from openai import OpenAI
 from fastapi.responses import FileResponse
 from docx import Document
@@ -92,7 +92,7 @@ async def get_letter(id: str):
         letter_db = Letter_DB(id=str(find_letter["_id"]), letter=Letter(content=find_letter["content"]))
         return letter_db
     else:
-        return {"message": "Carta no encontrada"}
+        raise HTTPException(status_code=404, detail="Item not found")
     
 #enviar cuerpo de request como {"content":"contenido de la carta"}
 @router.put('/letter-db/{id}',response_model=Union[Letter_DB, dict], status_code=201)
@@ -104,7 +104,7 @@ async def update_letter(id: str, request: UpdateLetterRequest):
         letter_db = Letter_DB(id=str(letter_to_update["_id"]), letter=Letter(content=letter_to_update["content"]))
         return letter_db
     else:
-        return {"message": "Carta no encontrada"}
+        return HTTPException(status_code=404, detail="Item not found")
 
 @router.delete('/letter-db/{id}',response_model=dict, status_code=201)
 async def update_letter(id: str):
@@ -113,4 +113,4 @@ async def update_letter(id: str):
         await delete_letter_id(id)
         return {"message": "Carta eliminada exitosamente"}
     else:
-        return {"message": "Carta no encontrada"}
+        return HTTPException(status_code=404, detail="Item not found")

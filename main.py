@@ -37,6 +37,7 @@ client = AsyncIOMotorClient(mongo_uri)
 db = client["letter_database"]
 
 async def startup_event():
+    print("Checking connection with MongoDB")
     connected = await connect_and_init_db()
     if not connected:
         raise HTTPException(status_code=500, detail="No se pudo conectar a MongoDB")
