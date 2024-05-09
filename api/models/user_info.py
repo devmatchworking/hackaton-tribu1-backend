@@ -5,12 +5,12 @@ from pydantic import BaseModel, Field, EmailStr
 
 
 class UserInfo(BaseModel):
-    name: str = Field(..., min_length=5, max_length=25, example="John")
+    name: str = Field(..., min_length=1, max_length=25, example="John")
     last_name: str = Field(..., example="Doe")
     email: EmailStr = Field(..., example="johndoe@example.com")
     contact: str = Field(..., min_length=10,
                          max_length=10, example="0910101010")
-    experience: str = Field(..., min_length=25, max_length=200,
+    experience: str = Field(..., min_length=1, max_length=200,
                             example="3 years in backend development at XYZ Company")
 
     # return a string with the prompt to be used in the openai api

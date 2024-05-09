@@ -5,12 +5,27 @@ import os
 from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
 from utils.check_db_conn import check_mongo_connection
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
 
 app = FastAPI()
 app.include_router(letters.router)
+
+origins = [
+    "*",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 
 mongo_uri = os.getenv("MONGODB_URL") 
 client = AsyncIOMotorClient(mongo_uri)
