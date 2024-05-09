@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from api.routes import letters
+from routes import letters
 import uvicorn
 import os
 from dotenv import load_dotenv
