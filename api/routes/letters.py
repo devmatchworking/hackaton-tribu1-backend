@@ -28,13 +28,13 @@ async def create_letter(user_info: UserInfo, enterprise_info: EnterpriseInfo) ->
 
     language = "espanish"
    
-    prompt = f"""Write a motivational letter in the language [{language}] addressed to the recipient[{enterprise_info.recipient}], [{enterprise_info.position}] at [{enterprise_info.name}] regarding the [{enterprise_info.vacant}] position.
-    Relate next experience [{user_info.experience}]
-    of [{user_info.name} {user_info.last_name}] with the vacant position[{enterprise_info.vacant}] position at the enterprise[{enterprise_info.name}].
+    prompt = f"""Write a motivational letter in the language [{language}] addressed to the recipient<x23gh300g2>{enterprise_info.recipient}<x23gh300g2>, <x23gh300g2>{enterprise_info.position}<x23gh300g2> at <x23gh300g2>{enterprise_info.name}<x23gh300g2> regarding the <x23gh300g2>{enterprise_info.vacant}<x23gh300g2> position.
+    Relate next experience <x23gh300g2>{user_info.experience}<x23gh300g2>
+    of <x23gh300g2>{user_info.name} {user_info.last_name}<x23gh300g2> with the vacant position<x23gh300g2>{enterprise_info.vacant}<x23gh300g2> position at the enterprise <x23gh300g2>{enterprise_info.name}<x23gh300g2>.
     If any information is missing, please Do not complete it with generic information.
-    the date of the solicitation is [{user_info.date_of_solicitation}].
+    the date of the solicitation is <x23gh300g2>{user_info.date_of_solicitation}<x23gh300g2>.
     Remember to include the following information for contact in the signature:
-    [{user_info.name} {user_info.last_name}{user_info.email}{user_info.contact}]
+    <x23gh300g2>{user_info.name} {user_info.last_name}{user_info.email}{user_info.contact}<x23gh300g2>
     """
     
     try:
