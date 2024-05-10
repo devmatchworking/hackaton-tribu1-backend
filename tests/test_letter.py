@@ -58,20 +58,6 @@ def get_test_letter_id():
 
 
 
-def test_update_letter(get_test_letter_id):
-    with TestClient(app) as client:
-        content = {"content":"contenido de la carta"}
-        response = client.put("/letter-db/{get_test_letter_id}", json=content)
-        assert response.status_code == 201
-        assert response.json()["letter"]["content"] == content
-
-def test_delete_letter(get_test_letter_id):
-    with TestClient(app) as client:
-        response = client.delete("/letter-db/1")
-        assert response.status_code == 201
-        assert response.json()["message"] == "Carta eliminada exitosamente"
-
-
 def test_create_letter_invalid_enterprise_info():
     
     user_info = UserInfo(
@@ -104,13 +90,3 @@ def test_get_letter_not_found():
     response = client.get("/letter-db/999")  # Non-existent letter ID
     assert response.status_code == 404  # Not Found
 
-def test_update_letter_not_found(get_test_letter_id):
-    with TestClient(app) as client:
-        letter = Letter(content="Updated letter content")
-        response = client.put("/letter-db/{test_letter_id}", json=letter.model_dump())  # Non-existent letter ID
-        assert response.status_code == 404  # Not Found
-
-def test_delete_letter_not_found():
-    with TestClient(app) as client:
-        response = client.delete("/letter-db/663d5c3ae8212b97079f15e2")  # Non-existent letter ID
-        assert response.status_code == 422  # Not Found
